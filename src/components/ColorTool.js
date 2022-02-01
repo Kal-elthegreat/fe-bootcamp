@@ -12,9 +12,6 @@ export const ColorTool = () => {
             </header>
             <ul>
                 {colors.map(c => <li key={c.id}>{c.name} {c.hexcode}</li>)}
-                {/* <li>red</li>
-                <li>green</li>
-                <li>blue</li> */}
             </ul>
         </>
     )
