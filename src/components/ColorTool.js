@@ -1,18 +1,27 @@
+import { useState } from 'react';
+import { ToolHeader } from "./ToolHeader";
+import { ColorList } from "./ColorList";
+import { ColorForm } from "./ColorForm";
 
+export const ColorTool = (props) => {
+    
+    const [colors, setColors] = useState([...props.colors])
 
-
-export const ColorTool = () => {
-
-    const colors = [{id: 1, name: 'red', hexcode: 'ff0000'},{id: 2, name: 'green', hexcode: '00ff00'},{id: 3, name: 'blue', hexcode: '0000ff'}];
+    //look at this convention
+    const addColor = color => {
+        setColors([...colors,
+            {
+            ...color,
+            id: Math.max(...colors.map(c=>c.id),0) +1,
+            }
+        ])
+    }
 
     return (
         <>
-            <header>
-                <h2> ColorTool</h2>
-            </header>
-            <ul>
-                {colors.map(c => <li key={c.id}>{c.name} {c.hexcode}</li>)}
-            </ul>
+            <ToolHeader header="Color Tool" />
+            <ColorList colors={colors} />
+            <ColorForm buttonText="Add Color" onSubmitColor={addColor}/>
         </>
     )
 }

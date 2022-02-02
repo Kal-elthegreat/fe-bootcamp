@@ -1,10 +1,12 @@
 ### Notes
 - best practice is to always use named imports instead of defaults. 
 - create a layout that persists each page rendering <Layout>
-- Browser route around the app> Route around the routes > Routes take a path and element 
-- render diff pages using <Outlet>
+- <BrowserRoute>around the app -> <Route> around the routes -> <Routes> take a path and element 
+- render diff pages in <main> using <Outlet>
 - in order to do so you need those paths wrapped in <Link>
 
+- React Flow: model/component -> vdom -> ui -> fn -> repeats
+- pass changes to data where the component will render and not by a fn
 
 
 # Getting Started with Create React App

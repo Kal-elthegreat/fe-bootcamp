@@ -1,43 +1,75 @@
 import "./Layout.css"
-export const CarTool = () => {
-    const cars = [
-        { id: 12, make: 'Tesla', model: 'Y', year: 2022, color: 'Grey', price: `$${62000}` },
-        { id: 204, make: 'Ford', model: 'Mustang', year: 2012, color: 'Red', price: `$${12000}` },
-    ]
+import { useState } from "react";
+import { ToolHeader } from "./ToolHeader";
+import { CarTable } from "./CarTable";
+import { CarForm } from "./CarForm";
+
+//fn not dependent on state, so placed outside of the react fn to limit re-renders
+const sortCars = (cars, carsSort) => {
+
+  return [ ...cars ].sort((a,b) => {
+
+    if (a[carsSort.column] < b[carsSort.column]) {
+      return carsSort.direction === 'asc' ? -1 : 1;
+    } else if (a[carsSort.column] > b[carsSort.column]) {
+      return carsSort.direction === 'asc' ? 1 : -1;
+    } else {
+      return 0;
+    }
+
+  });
+
+};
+
+export const CarTool = (props) => {
+
+    const [cars, setCars] = useState(props.cars)
+    const [ carsSort, setCarsSort ] = useState({
+    column: 'id',
+    direction: 'asc'
+  });
+
+  
+  
+  const addCar = car => {
+      setCars([...cars, {
+          ...car,
+          id:Math.max(...cars.map(c=>c.id),0) +1
+        }])
+    }
+    
+    const doSortCars = (column) => {
+  
+        if (column !== carsSort.column) {
+            setCarsSort({
+                ...setCars,
+                column,
+                direction: 'asc',
+            });
+        } else {
+            if (carsSort.direction === 'asc') {
+                setCarsSort({
+                    ...carsSort,
+                    direction: 'desc',
+                });
+            } else {
+                setCarsSort({
+                    ...carsSort,
+                    direction: 'asc',
+                });
+            }
+        }
+    }
+
     return (
         <>
-            <header>
-                <h2> CarTool</h2>
-            </header>
-            <table>
-                <thead>
-                    <tr>
-                        <td colSpan={6}>Cars Available</td>
-                    </tr>
-                    <tr>
-                        <td>Id</td>
-                        <td>Make</td>
-                        <td>Model</td>
-                        <td>Year</td>
-                        <td>Color</td>
-                        <td>Price</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        cars.map(car => {
-                        return <tr key={car.id}>
-                            <td>{car.id}</td>
-                            <td>{car.make}</td>
-                            <td>{car.model}</td>
-                            <td>{car.year}</td>
-                            <td>{car.color}</td>
-                            <td>{car.price}</td>
-                        </tr>
-                        })
-                    }
-                </tbody>          
-            </table>
+            <ToolHeader header="Car Tool"/>
+            <CarTable
+                cars={sortCars(cars, carsSort)}
+                carsSort={carsSort}
+                onSortCars={doSortCars} 
+            />
+            <CarForm onSubmit={addCar} buttonText="Add Car"/>
         </>
     )
 }
