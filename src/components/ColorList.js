@@ -5,7 +5,7 @@ export const ColorList = (props) => {
     const { colors } = props;
 
     return (
-        <ul>  
+        <ul>
             {colors.map(c => <li key={c.id}>{c.name} {c.hexcode}</li>)}
         </ul>
     )
@@ -17,8 +17,8 @@ ColorList.defaultProps = {
 
 ColorList.propTypes = {
     colors: PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.number.isRequired,
-        name:PropTypes.string.isRequired,
-        hexcode:PropTypes.string.isRequired
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        hexcode: PropTypes.string.isRequired
     })).isRequired,
 }

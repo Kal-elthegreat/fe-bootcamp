@@ -1,8 +1,7 @@
 
 
 export const CarViewRow = (props) => {
-
-    const { car } = props;
+    const { car, onRemoveCar: removeCar, onEditRow: editRow } = props;
 
     return (
     <tr>
@@ -12,6 +11,8 @@ export const CarViewRow = (props) => {
         <td>{car.year}</td>
         <td>{car.color}</td>
         <td>{car.price}</td>
+        <td><button onClick={()=> editRow(car.id)}>Edit</button></td>
+        <td><button onClick={() =>removeCar(car.id) }>Delete</button></td>
     </tr>
     )
 }
