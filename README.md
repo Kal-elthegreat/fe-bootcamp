@@ -5,8 +5,12 @@
 - render diff pages in <main> using <Outlet>
 - in order to do so you need those paths wrapped in <Link>
 
+concepts to try to remember
 - React Flow: model/component -> vdom -> ui -> fn -> repeats
-- pass changes to data where the component will render and not by a fn
+- DOM CANNOT rerender without some Model change, model changes occur ONLY when state changes
+- fn should update state, model should make calculations on the state to be passed to vdom
+- be wary of updating existing data structures to fit my own codes needs
+-4 types of model data (data from outside) props, (data from within) state, (kinda like a global data) context, and (setting state w/o re-rendering) ref
 
 
 # Getting Started with Create React App
