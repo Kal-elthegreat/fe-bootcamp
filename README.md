@@ -7,10 +7,13 @@
 
 concepts to try to remember
 - React Flow: model/component -> vdom -> ui -> fn -> repeats
+- "render" occurs between model and vdom, "reconciliation" (current vdom cheecked against prev vdom) occurs between vdom and ui
 - DOM CANNOT rerender without some Model change, model changes occur ONLY when state changes
 - fn should update state, model should make calculations on the state to be passed to vdom
 - be wary of updating existing data structures to fit my own codes needs
--4 types of model data (data from outside) props, (data from within) state, (kinda like a global data) context, and (setting state w/o re-rendering) ref
+-4 types of model data (data from outside) props, (data from within) state, (kinda like a global data) context, and (persist between renders, doesn't cause re-rendering) ref
+-data relationship to component determines if it is state or props
+-prop drilling is passing data from a higher/top level component and creating a vertical coupling that is not needed
 
 
 # Getting Started with Create React App

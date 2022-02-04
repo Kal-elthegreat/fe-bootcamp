@@ -1,11 +1,12 @@
-import { useList } from "../hooks/useList";
 import { ToolHeader } from "./ToolHeader";
 import { ColorList } from "./ColorList";
 import { ColorForm } from "./ColorForm";
 
-export const ColorTool = ({ colors: colorList }) => {
+import { useColorTool } from "../hooks/useColorTool";
 
-    const [colors, add] = useList([...colorList])
+export const ColorTool = () => {
+
+    const [colors, add] = useColorTool()
 
     return (
         <>
