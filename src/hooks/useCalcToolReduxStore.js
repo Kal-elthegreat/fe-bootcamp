@@ -2,12 +2,13 @@ import { bindActionCreators } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 
-import { createAddAction, createSubtractAction,createMultiplyAction, createDivideAction } from '../actions/calcToolActions';
+import { createAddAction, createSubtractAction,createMultiplyAction, createDivideAction, createClearHistAction,createDeleteHistAction, createErrorAction} from '../actions/calcToolActions';
 
 export const useCalcToolReduxStore = () => {
-    //selector
+    
     const result = useSelector(state => state.result);
     const history = useSelector(state => state.history);
+    const error = useSelector(state => state.error);
 
     const dispatch = useDispatch();
 
@@ -15,9 +16,16 @@ export const useCalcToolReduxStore = () => {
             add: createAddAction,
             subtract: createSubtractAction,
             multiply: createMultiplyAction,
-            divide: createDivideAction,
-    }, dispatch), [dispatch]
-    )
+            clearHist:createClearHistAction,
+            deleteHist:createDeleteHistAction
+    }, dispatch), [dispatch])
 
-    return {...actions,result,history}
+    const safeDivide = value => {
+        if (value === 0) {
+            dispatch(createErrorAction('cannot divide by 0'));
+        } else {
+            dispatch(createDivideAction(value))
+          }
+      }
+    return {...actions,result,history, error, safeDivide}
 }
