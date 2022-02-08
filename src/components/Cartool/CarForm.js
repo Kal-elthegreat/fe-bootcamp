@@ -1,20 +1,18 @@
-import { useForm } from '../hooks/useForm';
+import { useForm } from '../../hooks/useForm';
+import { useCar } from './hooks/useCar';
 
 export const CarForm = (props) => {
     
-    const { onSubmit, buttonText} = props;
-    const [carform, change, resetForm] = useForm({
+    const {buttonText } = props;
+    const {create} = useCar();
+    const [carform, change] = useForm(
+        {
         make: '',
         model: '',
         year: '',
         color: '',
         price: ''
     })
-
-    const submitCar = () => {
-        onSubmit({...carform});
-        resetForm()
-    }
 
     return (
         <form>
@@ -38,7 +36,7 @@ export const CarForm = (props) => {
                 Price:
                 <input type="text" name="price" value={carform.price } onChange={change}/>
             </label>
-            <button type="button" onClick={submitCar}>{buttonText}</button>
+            <button type="button" onClick={() => create(carform)}>{buttonText}</button>
         </form>
     )
 }

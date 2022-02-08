@@ -7,7 +7,6 @@ export const CalcTool = () => {
 
     const [numInput, setNumInput] = useState(0);
     const { add, subtract, multiply, clearHist, deleteHist, result, history, error, safeDivide,} = useCalcTool();
-
     
     const clearAll = () => {
         clearHist();

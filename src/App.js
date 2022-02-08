@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Home } from './components/Home';
 import { ColorToolStoreProvider } from './contexts/colorToolStoreContext';
-import { CarToolStoreProvider } from './contexts/carToolStoreContext';
+import {carStore} from './components/Cartool/stores/carStore';
 import { ColorTool } from './components/ColorTool';
-import { CarTool } from './components/CarTool';
+import { CarTool } from './components/Cartool';
 import { Layout } from './components/Layout';
 import { calcToolStore } from './stores/calcToolStore';
 import { CalcTool } from './components/CalcTool';
@@ -17,9 +17,9 @@ export const App = () => {
         <Route path="color-tool" element={<ColorToolStoreProvider>
           <ColorTool />
         </ColorToolStoreProvider>} />
-        <Route path="car-tool" element={<CarToolStoreProvider>  
+        <Route path="car-tool" element={<Provider store={carStore}>  
           <CarTool />
-        </CarToolStoreProvider>} />
+        </Provider>} />
         <Route path="calc-tool" element={<Provider store={calcToolStore}>
           <CalcTool />
         </Provider>} /> 

@@ -12,11 +12,19 @@ concepts to try to remember
 - fn should update state, model should make calculations on the state to be passed to vdom
 - be wary of updating existing data structures to fit my own codes needs
 - 4 types of model data (data from outside) props, (data from within) state, (kinda like a global data) context, and (persist between renders, doesn't cause re-rendering) ref
+- useRef can change it's state w/o re-rendering
 - data relationship to component determines if it is state or props
 - prop drilling is passing data from a higher/top level component and creating a vertical coupling that is not needed
+- useMemo returns a new result from a function when something changes
+- useCallback creates a new function object when something changes
 
 redux
 - store (state obj) -> selector -> react comp tree -> action ( updates the state by way of a dispatch) -> reducers to create the store
+- logic flow acronym C.A.R.S(component,actions,reducers,store/selectors)
+    - component runs the action, 
+    - actions pass data to reducers, 
+    - selectors subscribe to state,
+    - reducer updates state
 - reducer has to be a pure function
 - dont use local component state except for input fields
 

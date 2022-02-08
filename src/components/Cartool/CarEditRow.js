@@ -1,7 +1,8 @@
-import { useForm } from '../hooks/useForm';
+import { useForm } from '../../hooks/useForm';
+import { useCar } from "./hooks/useCar";
 
-export const CarEditRow = ({ car, onSaveCar, onResetRow: resetRow}) => {
-
+export const CarEditRow = ({ car}) => {
+    const {update,reset} = useCar()
     
     const [carForm, change] = useForm({
         make: car.make,
@@ -11,14 +12,6 @@ export const CarEditRow = ({ car, onSaveCar, onResetRow: resetRow}) => {
         price: car.price,
     });
 
-
-    const saveCar = () => {
-        onSaveCar({
-        ...carForm,
-        id: car.id,
-        });
-    };
-
     return (
         <tr>
             <td>{car.id}</td>
@@ -27,8 +20,8 @@ export const CarEditRow = ({ car, onSaveCar, onResetRow: resetRow}) => {
             <td><input type="number" name='year' value={carForm.year} onChange={change}/></td>
             <td><input type="text" name='color' value={carForm.color} onChange={change}/></td>
             <td><input type="number" name='price' value={carForm.price} onChange={change}/></td>
-            <td><button onClick={() => saveCar({ ...carForm, id: car.id }) }>Save</button></td>
-            <td><button onClick={resetRow}>Cancel</button></td>
+            <td><button onClick={() => update({ ...carForm, id: car.id }) }>Save</button></td>
+            <td><button onClick={reset}>Cancel</button></td>
         </tr>
     )
 
