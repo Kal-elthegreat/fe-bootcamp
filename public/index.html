@@ -42,5 +42,71 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- <script>
+      const delay = () => Math.random() * 1000 + 500;
+
+      function allDone() {
+        console.log('all done');
+      }
+
+      setTimeout(() => {
+        console.log('a')
+      }, delay())
+      setTimeout(() => {
+        console.log('b')
+      }, delay())
+      setTimeout(() => {
+        console.log('c')
+      }, delay())
+      </script> -->
+      <!-- <script>
+        
+        // const xhr = new XMLHttpRequest();
+
+        // xhr.addEventListener('readystatechange', () => {
+        //   if(xhr.status === 200 && xhr.readyState === 4){
+        //     // console.log(JSON.parse(xhr.responseText))
+        //   }
+        // })
+
+        // xhr.open('GET', 'http://localhost:3060/cars');
+        // xhr.send();
+
+        const myFetch = (url) => {
+          
+          xhr = new XMLHttpRequest();
+
+          return new Promise ((res,rej) => {
+
+            xhr.addEventListener('readystatechange', () => {
+                if(xhr.status === 200 && xhr.readyState === 4){
+                res(JSON.parse(xhr.responseText))
+              }
+            })
+  
+            xhr.open('GET',url);
+            xhr.send();
+          })
+
+        } 
+
+        myFetch('http://localhost:3060/cars')
+        .then(cars => cars.forEach(c=> console.log(c)))
+      </script> -->
+      <!-- <script>
+        const allCars = () => {
+
+          return fetch('http://localhost:3060/cars')
+          .then(res => res.json());
+        }
+
+        const allCars = async () => {
+          const res = await fetch('http://localhost:3060/cars')
+          const cars = res.json()
+          return cars;
+        }
+
+        allCars().then(cars => cars.forEach(c => console.log(c)))
+      </script> -->
   </body>
 </html>

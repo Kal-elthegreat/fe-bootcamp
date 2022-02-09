@@ -1,9 +1,5 @@
-import { useCar } from "./hooks/useCar";
-
 export const CarViewRow = (props) => {
-    const { car } = props;
-    const { edit, deleteCar } = useCar();
-
+    const { car,editCar,deleteCar } = props;
     return (
     <tr>
         <td>{car.id}</td>
@@ -12,7 +8,7 @@ export const CarViewRow = (props) => {
         <td>{car.year}</td>
         <td>{car.color}</td>
         <td>{car.price}</td>
-        <td><button onClick={()=> edit(car.id)}>Edit</button></td>
+        <td><button onClick={()=> editCar(car.id)}>Edit</button></td>
         <td><button onClick={() =>deleteCar(car.id) }>Delete</button></td>
     </tr>
     )

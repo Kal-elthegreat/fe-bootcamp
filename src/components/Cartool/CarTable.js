@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useCar } from './hooks/useCar';
 import { CarViewRow } from "./CarViewRow";
 import { CarEditRow } from "./CarEditRow";
 
 
-export const CarTable = () => {
-
-    const { sortCars,carSort,editingId, sortedCars } = useCar();
+export const CarTable = (props) => {
+    const { sortCars, sortedCars, editingId, carSort,saveCar,reset,editCar,deleteCar } = props;
+    
 
     const showSortDir = (colName) => {
     if (carSort.column === colName) {
@@ -32,11 +31,15 @@ export const CarTable = () => {
                     <CarEditRow
                         key={c.id}
                         car={c}
+                        saveCar={saveCar}
+                        reset ={reset}
                     />
                     :
                     <CarViewRow
                         key={c.id}
                         car={c}
+                        editCar={editCar}
+                        deleteCar={deleteCar}
                     />
                 )}
             </tbody>      

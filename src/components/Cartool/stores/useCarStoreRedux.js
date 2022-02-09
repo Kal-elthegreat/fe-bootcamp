@@ -1,8 +1,8 @@
 import { bindActionCreators } from "redux";
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 
-import {createSortAction,createCreateAction,createResetAction,createUpdateAction,createDeleteAction,createEditAction} from '../actions/carActions';
+import {refreshCars,addCar,saveCar,deleteCar,createSortAction,createResetAction,createEditAction} from '../actions/carActions';
 
 export const useCarStoreRedux = () => { 
     const carSort = useSelector(state => state.carSort);
@@ -13,14 +13,18 @@ export const useCarStoreRedux = () => {
     const dispatch = useDispatch();
 
     const actions = useMemo(() => bindActionCreators({
-        create:createCreateAction,
-        reset:createResetAction,
-        update:createUpdateAction,
-        deleteCar: createDeleteAction,
+        refreshCars,
+        addCar,
+        createResetAction,
+        saveCar,
+        deleteCar,
         edit: createEditAction,
         sortCars: createSortAction,
     }, dispatch), [dispatch])
     
+    useEffect(() => {
+        actions.refreshCars();
+    },[actions])
 
     return{...actions,carSort,editingId,tableData,sortedCars}
 

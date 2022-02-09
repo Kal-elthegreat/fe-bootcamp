@@ -1,0 +1,45 @@
+{
+  "colors": [
+    {
+      "id": 1,
+      "name": "red",
+      "hexcode": "#ff0000"
+    },
+    {
+      "id": 2,
+      "name": "green",
+      "hexcode": "#00ff00"
+    },
+    {
+      "id": 3,
+      "name": "blue",
+      "hexcode": "#0000ff"
+    }
+  ],
+  "cars": [
+    {
+      "make": "Tesla",
+      "model": "Y",
+      "year": "2022",
+      "color": "Grey",
+      "price": "$62000",
+      "id": 1
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": "2018",
+      "color": "White",
+      "price": "$22400",
+      "id": 2
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": "2018",
+      "color": "White",
+      "price": "$22400",
+      "id": 3
+    }
+  ]
+}
